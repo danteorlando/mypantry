@@ -1,0 +1,46 @@
+﻿<section id="pantryitems-view" class="mainbar" data-ng-controller="pantryitems as vm">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <input class="input-xlarge search-query"
+                        data-ng-model="vm.pantryItemsSearch"
+                        data-ng-keyup="vm.search($event)"
+                        placeholder="live search...">
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="btn-group pull-right">
+                            <a class="btn btn-info btn-form-md"
+                                data-ng-click="vm.refresh()"><i class="fa fa-refresh"></i><span>Refresh</span></a>
+                            <a class="btn btn-info btn-form-md"
+                               href="#/pantryitem/new"><i class="fa fa-plus"></i><span>Add Pantry Item</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="widget worange col-sm-12">
+                    <div data-cc-widget-header title="{{vm.name}}"
+                        subtitle="{{vm.filteredPantryItems.length}} / {{vm.pantryitems.length}}">
+                    </div>
+                    <div class="widget-content user">
+                        <div class="padd" data-ng-repeat="pi in vm.filteredPantryItems track by pi.id"
+                            data-ng-click="vm.gotoPantryItem(pi)">
+                            <div class="user" title="Go to pantry item details">
+                                <img data-ng-model="pi.ingredient.imageSource" 
+                                     data-mp-img-item="{{pi.ingredient.imageSource}}" 
+                                     class="img-thumbnail user-pic"></img>
+                                <div class="user-details">
+                                    <small>{{pi.name}}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

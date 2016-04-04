@@ -1,0 +1,44 @@
+﻿<section id="recipes-view" class="mainbar" data-ng-controller="recipes as vm">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <input class="input-xlarge search-query"
+                        data-ng-model="vm.recipesSearch"
+                        data-ng-keyup="vm.search($event)"
+                        placeholder="Filter room, speaker, tag, title, or track">
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="btn-group pull-right">
+                            <a class="btn btn-info btn-form-md"
+                                data-ng-click="vm.refresh()"><i class="fa fa-refresh"></i><span>Refresh</span></a>
+                            <a class="btn btn-info btn-form-md"
+                               href="#/recipe/new"><i class="fa fa-plus"></i><span>Add Recipe</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="widget wviolet col-sm-12">
+                    <div data-cc-widget-header title="{{vm.name}}"
+                        subtitle="{{vm.filteredRecipes.length}} / {{vm.recipes.length}}">
+                    </div>
+                    <div class="widget-content user">
+                        <div class="padd" data-ng-repeat="r in vm.filteredRecipes track by r.id"
+                            data-ng-click="vm.gotoRecipe(r)">
+                            <div class="user" title="Go to recipe details">
+                                <img data-mp-img-item="{{r.imageSource}}" class="img-thumbnail user-pic"></img>
+                                <div class="user-details">
+                                    <small>{{r.name}}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

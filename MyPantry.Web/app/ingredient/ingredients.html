@@ -1,0 +1,48 @@
+﻿<section id="ingredients-view" class="mainbar" data-ng-controller="ingredients as vm">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <input class="input-md search-query"
+                           data-ng-model="vm.ingredientSearch"
+                           data-ng-keyup="vm.search($event)"
+                           placeholder="live search...">
+                </div>
+                <div class="col-sm-8">
+                    <div class="btn-group pull-right">
+                        <a class="btn btn-info btn-form-md"
+                           data-ng-click="vm.refresh()"><i class="fa fa-refresh"></i><span>Refresh</span></a>
+                        <a class="btn btn-info btn-form-md"
+                           data-ng-href="#/ingredient/new"><i class="fa fa-plus"></i><span>Add Ingredient</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="widget wgreen col-sm-12">
+                    <div data-cc-widget-header title="{{vm.title}}"
+                        subtitle="{{vm.filteredIngredients.length}} / {{vm.ingredients.length}}">
+                    </div>
+                    <div class="widget-content user">
+                        <div class="padd list-flow" data-ng-repeat="s in vm.filteredIngredients track by s.id"
+                            data-ng-click="vm.gotoIngredient(s)">
+                            <div class="user" title="Go to speaker details">
+                                <!--Learning Points-->
+                                <!--<input ng-model="s.imageSource"/>-->
+                                <!--giggles="what happens"-->
+                                <img data-ng-model="s.imageSource" 
+                                     data-mp-img-item="{{s.imageSource}}" 
+                                     class="img-thumbnail-2 stacked"></img>
+                                <div class="name-stack">
+                                    <h5>{{s.name}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

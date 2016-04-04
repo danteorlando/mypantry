@@ -1,0 +1,71 @@
+﻿<section id="pantryitem-view" class="mainbar" data-ng-controller="pantryitemdetail as vm">
+    <section class="matter">
+        <div class="container">
+            <div>
+                <button class="btn btn-info btn-form-md"
+                    data-ng-click="vm.goBack()">
+                    <i class="fa fa-hand-o-left"></i>Back</button>
+                <button class="btn btn-info btn-form-md"
+                    data-ng-click="vm.cancel()" data-ng-disabled="!vm.canSave">
+                    <i class="fa fa-undo"></i>Cancel</button>
+                <button class="btn btn-info btn-form-md"
+                    data-ng-click="vm.save()" data-ng-disabled="!vm.canSave">
+                    <i class="fa fa-save"></i>Save</button>
+                <button class="btn btn-danger btn-form-md" data-ng-click="vm.deletePantryItem()">
+                    <i class="fa fa-trash-o"></i>Delete</button>
+
+                <!--Need ng-hide for show/hide animations-->
+                <span data-ng-show="vm.hasChanges" class="dissolve-animation ng-hide flag-haschanges">
+                    <i class="fa fa-asterisk fa fa-asterisk-large" rel="tooltip" title="You have changes"></i>
+                </span>
+            </div>
+            <div class="widget wgreen">
+                <div data-cc-widget-header title="Edit {{vm.pantryitem.name || 'New Pantry Item'}}"></div>
+                <form class="widget-content user">
+                    <div class="form-group">
+                        <label class="control-label">Ingredient</label>
+                        <div>
+                            <select class="form-control" 
+                                    data-ng-model="vm.pantryitem.ingredient"
+                                    data-ng-options="ingredient.name for ingredient in vm.ingredients"
+                                    data-ng-change="vm.pantryitem.name = vm.pantryitem.ingredient.name"
+                                    data-z-validate></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Name</label>
+                        <div class="">
+                            <input class="form-control" 
+                                   data-ng-model="vm.pantryitem.name" 
+                                   data-z-validate 
+                                   placeholder="Pantry item name" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Description</label>
+                        <div>
+                            <textarea class="form-control" 
+                                      data-ng-model="vm.pantryitem.description" 
+                                      data-z-validate 
+                                      placeholder="Enter description"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label">
+                            <img data-mp-img-item="{{vm.pantryitem.ingredient.imageSource}}"
+                                    class="img-thumbnail" />
+                            <address>{{ vm.pantryitem.ingredientId }}</address>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="form-group">
+                        <img data-ng-model="vm.pantryitem.imageSource"
+                             data-mp-img-item="{{vm.pantryitem.imageSource}}"
+                             class="img-thumbnail" ng-click="openFileChooserDialog()" />
+                    </div>
+                    -->
+                </form>
+            </div>
+        </div>
+    </section>
+</section>

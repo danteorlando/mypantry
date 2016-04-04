@@ -1,0 +1,5 @@
+C:\MyPantry\MyPantry.Model\bin\Debug\MyPantry.Model.dll
+C:\MyPantry\MyPantry.Model\bin\Debug\MyPantry.Model.pdb
+C:\MyPantry\MyPantry.Model\obj\Debug\MyPantry.Model.csprojResolveAssemblyReference.cache
+C:\MyPantry\MyPantry.Model\obj\Debug\MyPantry.Model.dll
+C:\MyPantry\MyPantry.Model\obj\Debug\MyPantry.Model.pdb
