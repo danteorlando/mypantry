@@ -18,7 +18,7 @@
     <link href="content/bootstrap.css" rel="stylesheet" />
     <link href="content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="content/toastr.css" rel="stylesheet" />
-    <link href="content/breeze.directives.css" rel="stylesheet" />
+    <link href="bower_components/breeze-client-labs/breeze.directives.css" rel="stylesheet" />
     <link href="content/customtheme.css" rel="stylesheet">
     <link href="content/styles.css" rel="stylesheet" />
 </head>
@@ -31,21 +31,28 @@
 
     <!-- Vendor Scripts -->
     <script src="scripts/jquery-2.0.3.js"></script>
-    <script src="scripts/angular.js"></script>
-    <script src="scripts/angular-animate.js"></script>
-    <script src="scripts/angular-route.js"></script>
-    <script src="scripts/angular-sanitize.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    
+    
+    <script src="bower_components/breeze-client/build/breeze.debug.js"></script>
+    <script src="bower_components/breeze-client/build/adapters/breeze.bridge.angular.js"></script>
+
+
+    <!-- Following script needed only for Breeze MongoDb version -->
+    <script src="bower_components/breeze-client/build/adapters/breeze.dataService.mongo.js"></script>
+    <script src="bower_components/breeze-client-labs/breeze.directives.js"></script>
+    <script src="bower_components/breeze-client-labs/breeze.metadata-helper.js"></script>
+    <script src="bower_components/breeze-client-labs/breeze.saveErrorExtensions.js"></script>
+
     <script src="scripts/angular.breeze.storagewip.js"></script>
     <script src="scripts/bootstrap.js"></script>
     <script src="scripts/toastr.js"></script>
     <script src="scripts/moment.js"></script>
-    <script src="scripts/breeze.debug.js"></script>
-    <script src="scripts/breeze.angular.q.js"></script>
-    <!-- Following script needed only for Breeze MongoDb version -->
-    <script src="scripts/breeze.dataService.mongo.js"></script>
-    <script src="scripts/breeze.directives.validation.js"></script>
-    <script src="scripts/breeze.metadata-helper.js"></script>
-    <script src="scripts/breeze.saveErrorExtensions.js"></script>
+
+
     <script src="scripts/ui-bootstrap-tpls-0.10.0.js"></script>
     <script src="scripts/spin.min.js"></script>
     <script src="scripts/ngplus-overlay.js"></script>
@@ -53,7 +60,8 @@
     <!-- Bootstrapping -->
     <script src="app/app.js"></script>
     <script src="app/config.js"></script>
-    <script src="app/config.breeze.js"></script>
+    <!-- 
+    <script src="app/config.breeze.js"></script>-->
     <script src="app/config.exceptionHandler.js"></script><!-- here but never in testRunner.html -->
     <script src="app/config.route.js"></script>
     <script src="app/environment.js"></script>
