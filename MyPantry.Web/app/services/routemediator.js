@@ -29,6 +29,7 @@
         //);
 
         function setRoutingEventHandlers() {
+            logger.log("setRoutingEventHandlers", null, null, false);
             handleRoutingErrors();
             updateDocTitle();
         }

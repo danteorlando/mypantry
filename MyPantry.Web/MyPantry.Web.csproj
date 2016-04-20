@@ -206,9 +206,12 @@
     <Content Include="scripts\angular.min.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\breeze.angular.js" />
     <Content Include="scripts\breeze.angular.q.js" />
+    <Content Include="scripts\breeze.bridge.angular.js" />
     <Content Include="scripts\breeze.dataService.mongo.js" />
     <Content Include="scripts\breeze.debug.js" />
+    <Content Include="scripts\breeze.directives.js" />
     <Content Include="scripts\breeze.directives.validation.js" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
@@ -230,6 +233,7 @@
     <Content Include="scripts\breeze.metadata-helper.js" />
     <Content Include="scripts\breeze.min.js" />
     <Content Include="scripts\breeze.saveErrorExtensions.js" />
+    <Content Include="scripts\breeze.to%24q.shim.js" />
     <Content Include="scripts\customtheme.js" />
     <None Include="scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="scripts\jquery-2.0.3.js" />

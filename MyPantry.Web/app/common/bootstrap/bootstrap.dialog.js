@@ -35,14 +35,23 @@
 	        '    img:hover {' + 
             '            outline: 2px solid black;' + 
 	        '    }' +
-            '    .block{' +
+            '    .block {' +
             '        float:left;' +
 	        '        display:block;' +
 	        '        margin-right:2.35765%;' +
 	        '        width:23.23176%;' +
 	        '        margin-bottom:1.875rem' +
 	        '    }' +
+            '    .ing-selected {' +
+            '        box-shadow:0px 12px 22px 1px #FF00FF;' +
+            '    }' +
             '</style>' +
+		    '<script>' +
+            '   function selectImg(img) {' +
+		    '        $(".ing-selected").removeClass("ing-selected");' +
+		    '        $(img).addClass("ing-selected");' +
+		    '    }' +  
+            '</script>' +
 			'<div>' +
 			'    <div class="modal-header">' +
 			'        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" data-ng-click="cancel()">&times;</button>' +
@@ -50,11 +59,11 @@
 			'    </div>' +
 			'    <div class="modal-body">' +
 		    '        <div class="intro-content">' + 
-			'            <form name="instaForm" ng-submit="submitForm()">' +
-			'	            <input type="text" placeholder="{{inputText}}" ng-model="formData.tagInput" name="tag-input" autofocus>' +
+			'            <form name="instaForm" data-ng-submit="submitForm()">' +
+			'	            <input type="text" data-ng-model="inputText" name="tag-input" autofocus>' +
 			'	            <div class="button-wrap">' +
-			'		            <button type="submit" class="button small">Submit</button>' +
-			'		            <button ng-if="instaForm.$submitted" type="reset" class="button small secondary" ng-click="clear()">' +
+			'		            <button type="submit" class="btn btn-primary">Submit</button>' +
+			'		            <button data-ng-if="instaForm.$submitted" type="reset" class="btn btn-info" data-ng-click="clear()">' +
 			'			            Clear' +
 			'		            </button>' +
 			'	            </div>' +
@@ -63,13 +72,13 @@
             //'            <p>Selected: <b>{{ selected.item }}</b></p>' +
 		    '        </div>' +
 			'    </div>' +
-            //'    <div class="insta-results" ng-if="instaForm.$valid && instaForm.$submitted">' +
-		    '        <div ng-repeat="instaImage in instaImages" class="block">' +
-			'            <a ng-href="" ng-click="selected.item = instaImage.image.thumbnailLink" target="_blank">' +
-			'	            <img ng-src="{{instaImage.image.thumbnailLink}}" alt="" />' +
+            '    <div class="insta-results" data-ng-if="instaForm.$valid && instaForm.$submitted">' +
+		    '        <div data-ng-repeat="instaImage in instaImages" class="block">' +
+			'            <a data-ng-href="" data-ng-click="selected.item = instaImage.image.thumbnailLink" target="_blank">' +
+			'	            <img onclick="selectImg(this)" data-ng-src="{{instaImage.image.thumbnailLink}}" alt="" />' +
 			'            </a>' +
 		    '        </div>' +
-	        //'    </div>' +
+	        '    </div>' +
 			'    <div class="modal-footer">' +
 			'        <button class="btn btn-primary" data-ng-click="ok()">{{okText}}</button>' +
 			'        <button class="btn btn-info" data-ng-click="cancel()">{{cancelText}}</button>' +
@@ -156,8 +165,8 @@
 		    $scope.cancel = function () { $modalInstance.dismiss('cancel'); };
 		    $scope.submitForm = function () {
 		        console.log('submit');
-		        console.log($scope.formData.tagInput);
-		        var tag = $scope.formData.tagInput;
+		        console.log($scope.inputText);
+		        var tag = $scope.inputText;
 		        searchByTag(tag);
 		        $scope.message = "Searching google for photos tagged with " + tag;
 		    };
@@ -168,6 +177,12 @@
 		        $scope.message = null;
 		        $scope.instaForm.$submitted = false;
 		    };
+		    $scope.selectImg = function (img) {
+		        console.log('select image');
+		        $('.ing-selected').removeClass('ing-selected');
+		        $(img).addClass('ing-selected');
+		    };  
+
 		    $scope.formData = {};
 		    var searchByTag = function (tag) {
 		        var url = 'https://www.googleapis.com/customsearch/v1'

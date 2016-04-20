@@ -25,10 +25,7 @@
                     <div class="widget-content user">
                         <div class="padd list-flow" data-ng-repeat="s in vm.filteredIngredients track by s.id"
                             data-ng-click="vm.gotoIngredient(s)">
-                            <div class="user" title="Go to speaker details">
-                                <!--Learning Points-->
-                                <!--<input ng-model="s.imageSource"/>-->
-                                <!--giggles="what happens"-->
+                            <div class="user" title="Go to ingredient details">
                                 <img data-ng-model="s.imageSource" 
                                      data-mp-img-item="{{s.imageSource}}" 
                                      class="img-thumbnail-2 stacked"></img>
