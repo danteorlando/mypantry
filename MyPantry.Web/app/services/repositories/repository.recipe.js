@@ -25,7 +25,8 @@
                 getById: base.getById,
                 getCount: getCount,
                 getEntityByIdOrFromWip: base.getEntityByIdOrFromWip,
-                getPartials: getPartials
+                getPartials: getPartials,
+                getRecipeById: getRecipeById
             };
 
             return repo;
@@ -45,6 +46,23 @@
                         return count = data.inlineCount;
                     });
             }
+            function getRecipeById(id) {
+                return breeze.EntityQuery.from('Recipes')
+                    .expand('recipeIngredientList')
+                    .toType(entityName)
+                    .using(manager).execute()
+                    .then(success).catch(base.queryFailed);
+
+                function success(response) {
+                    //recipes = base.setIsPartialTrue(response.results);
+                    //localRecipeSort(recipes); // for Mongo
+                    //base.zStorage.areItemsLoaded('recipes', true);
+                    //base.log('Retrieved [Recipe Recipe ] ' + id + 'from remote data source', recipes.length, true);
+                    //base.zStorage.save();
+                    return response.results[0];
+                }
+
+            }
 
             function getPartials(forceRemote) {
                 var recipes;
@@ -56,6 +74,7 @@
                 return recipesQuery
                     .select('id, name, description, imageSource')
                     .orderBy(orderBy)
+                    //.expand('recipeIngredientList')
                     .toType(entityName)
                     .using(manager).execute()
                     .then(success).catch(base.queryFailed);

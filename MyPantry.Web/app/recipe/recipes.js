@@ -49,6 +49,7 @@
 
         function getRecipes(forceRefresh) {
             return datacontext.recipe.getPartials(forceRefresh).then(function (data) {
+                //datacontext.recipeingredient.getPartials(forceRefresh);
                 return vm.recipes = vm.filteredRecipes = data;
             });
         }

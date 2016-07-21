@@ -16,5 +16,7 @@ namespace MyPantry.Model
 
         public virtual ICollection<PantryItem> PantryItems { get; set; }
 
+        public virtual ICollection<RecipeIngredient> RecipeIngredientList { get; set; }
+
     }
 }

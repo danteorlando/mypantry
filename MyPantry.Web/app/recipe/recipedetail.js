@@ -14,6 +14,7 @@
         var logWarning = common.logger.getLogFn(controllerId, 'warn');
         var $q = common.$q;
         var wipEntityKey = undefined;
+        var ingredientList = [];
 
         vm.cancel = cancel;
         vm.deleteRecipe = deleteRecipe;
@@ -23,11 +24,21 @@
         vm.save = save;
         vm.recipe = undefined;
         vm.openImageChooserDialog = openImageChooserDialog;
-
+        vm.addIngredientToList = addIngredientToList;
+        vm.ingredientList = ingredientList;
 
         Object.defineProperty(vm, 'canSave', { get: canSave });
 
         activate();
+
+        function addIngredientToList() {
+            if (angular.isDefined($scope.ingredientName) && $scope.ingredientName != '') {
+
+                vm.ingredientList.push({ name: $scope.ingredientName });
+
+                $scope.ingredientName = '';
+            }
+        }
 
         function openImageChooserDialog() {
             helper.openImageChooserDialog('Recipe Image')
@@ -87,7 +98,24 @@
             var val = $routeParams.id;
             if (val === 'new') { return vm.recipe = datacontext.recipe.create(); }
 
+            /*
             return datacontext.recipe.getEntityByIdOrFromWip(val)
+                .then(function (data) {
+                    if (data) {
+                        // data is either an entity or an {entity, wipKey} pair
+                        wipEntityKey = data.key;
+                        vm.recipe = data.entity || data;
+                    } else {
+                        logWarning('Could not find recipe id = ' + val);
+                        gotoRecipes();
+                    }
+                })
+                .catch(function (error) {
+                    logError('Error while getting recipe id = ' + val + "; " + error);
+                    gotoRecipes();
+                });
+            */
+            return datacontext.recipe.getRecipeById(val)
                 .then(function (data) {
                     if (data) {
                         // data is either an entity or an {entity, wipKey} pair

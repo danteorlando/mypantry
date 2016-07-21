@@ -45,8 +45,26 @@
                             <img data-mp-img-item="{{vm.recipe.imageSource }}"
                                  data-ng-model="vm.recipe.imageSource"
                                  class="img-thumbnail" 
-                                 ng-click="vm.openImageChooserDialog('Recipe Image')" />
+                                 data-ng-click="vm.openImageChooserDialog('Recipe Image')" />
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Ingredients</label>
+                        <!--
+                        -->    
+                        <div>
+                            <ul style="padding:5" data-ng-repeat="ing in vm.ingredientList">
+                                <li>{{ ing.name }}</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <input type="text" data-ng-model="ingredientName" placeholder="Enter the Ingredient" />
+                            <p><button data-ng-click="vm.addIngredientToList()">Add</button></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Directions</label>
                     </div>
                 </form>
             </div>

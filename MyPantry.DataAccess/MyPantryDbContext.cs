@@ -24,12 +24,14 @@ namespace MyPantry.DataAccess
             modelBuilder.Configurations.Add(new PantryItemConfiguration());
             modelBuilder.Configurations.Add(new IngredientConfiguration());
             modelBuilder.Configurations.Add(new RecipeConfiguration());
+            modelBuilder.Configurations.Add(new RecipeIngredientConfiguration());
+
         }
 
         public DbSet<PantryItem> PantryItems { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
-
+        public DbSet<RecipeIngredient> RecipeIngredients { get; set; }
 
     }
 }

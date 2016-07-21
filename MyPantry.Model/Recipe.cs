@@ -1,4 +1,6 @@
-﻿namespace MyPantry.Model
+﻿using System.Collections.Generic;
+
+namespace MyPantry.Model
 {
     public class Recipe
     {
@@ -11,5 +13,6 @@
 
         public string ImageSource { get; set; }
 
+        public virtual ICollection<RecipeIngredient> RecipeIngredientList { get; set; }
     }
 }

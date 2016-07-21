@@ -44,6 +44,11 @@ namespace MyPantry.Web.Controllers
             return _repository.Recipes;
         }
 
+        [HttpGet]
+        public IQueryable<RecipeIngredient> RecipeIngredients()
+        {
+            return _repository.RecipeIngredients;
+        }
 
         /// <summary>
         /// Query returing a 1-element array with a lookups object whose 

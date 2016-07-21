@@ -36,5 +36,10 @@ namespace MyPantry.DataAccess
         {
             get { return Context.Recipes; }
         }
+
+        public IQueryable<RecipeIngredient> RecipeIngredients
+        {
+            get { return Context.RecipeIngredients;  }
+        }
     }
 }

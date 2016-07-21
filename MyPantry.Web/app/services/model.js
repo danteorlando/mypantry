@@ -13,7 +13,8 @@
         var entityNames = {
             ingredient: 'Ingredient',
             pantryitem: 'PantryItem',
-            recipe: 'Recipe'
+            recipe: 'Recipe',
+            recipeingredient: 'RecipeIngredient'
         };
 
         var service = {
@@ -33,6 +34,7 @@
             registerPantryItem(metadataStore);
             registerIngredient(metadataStore);
             registerRecipe(metadataStore);
+            registerRecipeIngredient(metadataStore);
 
             modelValidation.createAndRegister(entityNames);
 
@@ -104,6 +106,13 @@
             metadataStore.registerEntityTypeCtor('Recipe', Recipe);
 
             function Recipe() {
+                this.isPartial = false;
+            }
+        }
+        function registerRecipeIngredient(metadataStore) {
+            metadataStore.registerEntityTypeCtor('RecipeIngredient', RecipeIngredient);
+
+            function RecipeIngredient() {
                 this.isPartial = false;
             }
         }
