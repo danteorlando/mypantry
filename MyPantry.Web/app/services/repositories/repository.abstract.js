@@ -63,18 +63,32 @@
                     return $q.when(entity);
                 }
             }
-
-            // It was not found in cache, so let's query for it.
-            // fetchEntityByKey will go remote because 
-            // 3rd parm is false/undefined. 
-            return manager.fetchEntityByKey(entityName, id)
-                .then(querySucceeded).catch(self.queryFailed);
+            
+            if (entityName === 'Recipe') {
+                return breeze.EntityQuery.from('Recipes')
+                                    .expand('recipeIngredientList')
+                                    .toType(entityName)
+                                    .using(manager).execute()
+                                    .then(querySucceeded).catch(self.queryFailed);
+            }
+            else {
+                // It was not found in cache, so let's query for it.
+                // fetchEntityByKey will go remote because 
+                // 3rd parm is false/undefined. 
+                return manager.fetchEntityByKey(entityName, id)
+                    .then(querySucceeded).catch(self.queryFailed);
+            }
 
             function querySucceeded(data) {
                 entity = data.entity;
                 if (!entity) {
-                    self.log('Could not find [' + entityName + '] id:' + id, null, true);
-                    return null;
+                    if (data.results) {
+                        entity = data.results[0];
+                    }
+                    if (!entity) {
+                        self.log('Could not find [' + entityName + '] id:' + id, null, true);
+                        return null;
+                    }
                 }
                 entity.isPartial = false;
                 self.log('Retrieved [' + entityName + '] id ' + entity.id + ' from remote data source', entity, true);

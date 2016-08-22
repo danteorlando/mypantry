@@ -119,8 +119,7 @@
 
         
         function onEveryChange() {
-            $scope.$on(config.events.entitiesChanged,
-                function (event, data) { autoStoreWip(); });
+            $scope.$on(config.events.entitiesChanged, function (event, data) { autoStoreWip(); });
         }
 
         function onDestroy() {
@@ -154,10 +153,11 @@
         }
 
         function storeWipEntity() {
-            if (!vm.session) return;
+            if (!vm.pantryitem) return;
             var description = vm.pantryitem.name || '[New Pantry Item]' + vm.pantryitem.id;
+            var routeState = "pantryitem";
             wipEntityKey = datacontext.zStorageWip.storeWipEntity(
-                vm.pantryitem, wipEntityKey, entityName, description);
+                vm.pantryitem, wipEntityKey, entityName, description, routeState);
         }
 
     }

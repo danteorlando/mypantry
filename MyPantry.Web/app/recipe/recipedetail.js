@@ -98,7 +98,6 @@
             var val = $routeParams.id;
             if (val === 'new') { return vm.recipe = datacontext.recipe.create(); }
 
-            /*
             return datacontext.recipe.getEntityByIdOrFromWip(val)
                 .then(function (data) {
                     if (data) {
@@ -114,7 +113,7 @@
                     logError('Error while getting recipe id = ' + val + "; " + error);
                     gotoRecipes();
                 });
-            */
+            /*
             return datacontext.recipe.getRecipeById(val)
                 .then(function (data) {
                     if (data) {
@@ -130,6 +129,7 @@
                     logError('Error while getting recipe id = ' + val + "; " + error);
                     gotoRecipes();
                 });
+            */
         }
         
         function goBack() { $window.history.back(); }
@@ -171,10 +171,11 @@
         }
 
         function storeWipEntity() {
-            if (!vm.session) return;
+            if (!vm.recipe) return;
             var description = vm.recipe.name || '[New Recipe]' + vm.recipe.id;
+            var routeState = "recipe";
             wipEntityKey = datacontext.zStorageWip.storeWipEntity(
-                vm.recipe, wipEntityKey, entityName, description);
+                vm.recipe, wipEntityKey, entityName, description, routeState);
         }
 
     }
