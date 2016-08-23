@@ -104,6 +104,7 @@
                         // data is either an entity or an {entity, wipKey} pair
                         wipEntityKey = data.key;
                         vm.recipe = data.entity || data;
+                        vm.ingredientList = data.recipeIngredientList;
                     } else {
                         logWarning('Could not find recipe id = ' + val);
                         gotoRecipes();
@@ -113,23 +114,6 @@
                     logError('Error while getting recipe id = ' + val + "; " + error);
                     gotoRecipes();
                 });
-            /*
-            return datacontext.recipe.getRecipeById(val)
-                .then(function (data) {
-                    if (data) {
-                        // data is either an entity or an {entity, wipKey} pair
-                        wipEntityKey = data.key;
-                        vm.recipe = data.entity || data;
-                    } else {
-                        logWarning('Could not find recipe id = ' + val);
-                        gotoRecipes();
-                    }
-                })
-                .catch(function (error) {
-                    logError('Error while getting recipe id = ' + val + "; " + error);
-                    gotoRecipes();
-                });
-            */
         }
         
         function goBack() { $window.history.back(); }

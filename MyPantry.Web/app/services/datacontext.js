@@ -99,6 +99,7 @@
 
         function prime() {
             /*
+            */
             // There are many paths through here, all must return a promise.
 
             // This function can only be called once.
@@ -117,7 +118,8 @@
             function loadLookupsFromRemote() {
                 // get lookups and speakers from remote data source, in parallel
                 //var promise = $q.all([service.lookup.getAll(), service.speaker.getPartials(true)]);
-                var promise = $q.all([service.lookup.getAll()]);
+                //var promise = $q.all([service.lookup.getAll()]);
+                var promise = $q.all([service.ingredient.getPartials(true)]);
                 if (!model.useManualMetadata) {
                     // got metadata from remote service; now extend it
                     promise = promise.then(function () {
@@ -129,9 +131,9 @@
 
 
             function success() {
-                log('Primed data', service.lookup.cachedData);
+                //log('Primed data', service.lookup.cachedData);
+                log('Primed data');
             }
-            */
         }
 
         function save() {
