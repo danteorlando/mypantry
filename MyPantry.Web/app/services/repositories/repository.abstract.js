@@ -66,6 +66,7 @@
             
             if (entityName === 'Recipe') {
                 return breeze.EntityQuery.from('Recipes')
+                                    .where('id', '==', id)
                                     .expand('recipeIngredientList')
                                     .toType(entityName)
                                     .using(manager).execute()

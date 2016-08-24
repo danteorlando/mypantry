@@ -26,6 +26,7 @@
         vm.openImageChooserDialog = openImageChooserDialog;
         vm.addIngredientToList = addIngredientToList;
         vm.ingredientList = ingredientList;
+        vm.ingredients = [];
 
         Object.defineProperty(vm, 'canSave', { get: canSave });
 
@@ -40,6 +41,10 @@
             }
         }
 
+        function addIngredient() {
+            vm.ingredientList.push({});
+        }
+
         function openImageChooserDialog() {
             helper.openImageChooserDialog('Recipe Image')
                 .then(function () {
@@ -51,6 +56,7 @@
 
         function activate() {
             //routemediator.register(vm);
+            initLookups();
             onDestroy();
             onHasChanges();
             // Whether we succeed or fail, we still want to call onEveryChange
@@ -58,6 +64,13 @@
                 .then(onEveryChange);
         }
          
+        function initLookups() {
+            var forceRefresh = false;
+            return datacontext.ingredient.getPartials(forceRefresh).then(function (data) {
+                vm.ingredients = data;
+            });
+        }
+
         function autoStoreWip(immediate) {
             common.debouncedThrottle(controllerId, storeWipEntity, 1000, immediate);
         }
