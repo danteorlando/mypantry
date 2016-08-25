@@ -14,7 +14,7 @@
         var logWarning = common.logger.getLogFn(controllerId, 'warn');
         var $q = common.$q;
         var wipEntityKey = undefined;
-        var ingredientList = [];
+        //var ingredientList = [];
 
         vm.cancel = cancel;
         vm.deleteRecipe = deleteRecipe;
@@ -25,8 +25,12 @@
         vm.recipe = undefined;
         vm.openImageChooserDialog = openImageChooserDialog;
         vm.addIngredientToList = addIngredientToList;
-        vm.ingredientList = ingredientList;
+        vm.createTempRecipeIngredient = createTempRecipeIngredient;
+        //vm.addIngredient = addIngredient;
+        vm.ingredientList = [];
         vm.ingredients = [];
+        //$scope.ingredientList = [];
+
 
         Object.defineProperty(vm, 'canSave', { get: canSave });
 
@@ -40,13 +44,13 @@
                 $scope.ingredientName = '';
             }
         }
-
+/*
         function addIngredient() {
             vm.ingredientList.push({});
         }
-
-        function openImageChooserDialog() {
-            helper.openImageChooserDialog('Recipe Image')
+*/
+        function openImageChooserDialog(inputText) {
+            helper.openImageChooserDialog('Recipe Image', inputText)
                 .then(function () {
                     if ($scope.selectedImage != null && $scope.selectedImage != '') {
                         vm.recipe.imageSource = $scope.selectedImage;
@@ -83,7 +87,11 @@
                 gotoRecipes();
             }
         }
-        
+
+        function createTempRecipeIngredient() {
+            return datacontext.recipeingredient.createTempO();
+        }
+
         function gotoRecipes() { $location.path('/recipes'); }
 
         function canSave() { return vm.hasChanges && !vm.isSaving; }
@@ -117,7 +125,10 @@
                         // data is either an entity or an {entity, wipKey} pair
                         wipEntityKey = data.key;
                         vm.recipe = data.entity || data;
-                        vm.ingredientList = data.recipeIngredientList;
+                        if (data.recipeIngredientList && data.recipeIngredientList.length > 0) {
+                            vm.ingredientList = data.recipeIngredientList;
+                        }
+                        //$scope.ingredientList = data.recipeIngredientList;
                     } else {
                         logWarning('Could not find recipe id = ' + val);
                         gotoRecipes();

@@ -22,6 +22,7 @@
             var count = undefined;
             var repo = {
                 create: create,
+                createTempO: createTempO,
                 getById: base.getById,
                 getCount: getCount,
                 getEntityByIdOrFromWip: base.getEntityByIdOrFromWip,
@@ -31,6 +32,8 @@
             return repo;
 
             function create() { return manager.createEntity(entityName); }
+
+            function createTempO() { return manager.createEntity(entityName); }
 
             function getCount() {
                 if (base.zStorage.areItemsLoaded('recipeingredients')) {
@@ -54,7 +57,7 @@
                 }
 
                 return recipeIngredientsQuery
-                    .select('recipeId, ingredientId, unit')
+                    .select('id, recipeId, ingredientId, unitId')
                     .orderBy(orderBy)
                     .toType(entityName)
                     .using(manager).execute()

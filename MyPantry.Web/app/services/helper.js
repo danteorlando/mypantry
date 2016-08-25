@@ -27,7 +27,7 @@
         }
 
         function openImageChooserDialog(mesg, inputText) {
-            return bsDialog.fileChooserDialog(mesg, inputText)
+            return bsDialog.fileChooserDialog(mesg, null, null, null, inputText)
                 .then(success).catch(failed);
 
             function success(selectedItem) {

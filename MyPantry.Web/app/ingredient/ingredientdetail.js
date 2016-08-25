@@ -15,6 +15,7 @@
         var $q = common.$q;
         var wipEntityKey = undefined;
 
+        vm.openImageChooserDialog = openImageChooserDialog;
         vm.deleteIngredient = deleteIngredient;
         vm.cancel = cancel;
         vm.goBack = goBack;
@@ -70,7 +71,15 @@
                 }
             }
         }
-
+        function openImageChooserDialog(inputText) {
+            helper.openImageChooserDialog('Ingredient Image', inputText)
+                .then(function () {
+                    if ($scope.selectedImage != null && $scope.selectedImage != '') {
+                        vm.ingredient.imageSource = $scope.selectedImage;
+                    }
+                });
+        }
+        /*
         $scope.openFileChooserDialog = function openFileChooserDialog(inputText) {
             return bsDialog.fileChooserDialog('Ingredient Image', null, null, null, inputText)
                 .then(success).catch(failed);
@@ -83,7 +92,7 @@
             function failed(error) {
             }
         }
-
+        */
         function getRequestedIngredient() {
             var val = $routeParams.id;
             if (val === 'new') { return vm.ingredient = datacontext.ingredient.create(); }

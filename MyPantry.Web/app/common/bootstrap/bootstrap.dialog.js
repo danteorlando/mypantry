@@ -165,8 +165,14 @@
 		    $scope.cancel = function () { $modalInstance.dismiss('cancel'); };
 		    $scope.submitForm = function () {
 		        console.log('submit');
-		        console.log($scope.inputText);
-		        var tag = $scope.inputText;
+		        if ($scope.inputText != '') {
+		            console.log($scope.inputText);
+		            var tag = $scope.inputText;
+		        }
+		        else {
+		            console.log(this.inputText);
+		            var tag = this.inputText;
+		        }
 		        searchByTag(tag);
 		        $scope.message = "Searching google for photos tagged with " + tag;
 		    };

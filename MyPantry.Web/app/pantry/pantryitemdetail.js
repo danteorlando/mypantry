@@ -81,18 +81,6 @@
             }
         }
 
-        $scope.openFileChooserDialog = function openFileChooserDialog() {
-            return bsDialog.fileChooserDialog('PantryItem Image')
-                .then(success).catch(failed);
-
-            function success(selectedItem) {
-                $scope.selectedItem = selectedItem;
-                vm.pantryitem.imageSource = selectedItem;
-            }
-
-            function failed(error) {
-            }
-        }
 
         function getRequestedPantryItem() {
             var val = $routeParams.id;

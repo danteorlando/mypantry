@@ -45,7 +45,7 @@
                             <img data-mp-img-item="{{vm.recipe.imageSource }}"
                                  data-ng-model="vm.recipe.imageSource"
                                  class="img-thumbnail" 
-                                 data-ng-click="vm.openImageChooserDialog('Recipe Image')" />
+                                 data-ng-click="vm.openImageChooserDialog(vm.recipe.name)" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -70,7 +70,7 @@
                                 </thead>
                                 <tbody>
                                     <!-- essentially a foreach loop -->
-                                    <tr ng-repeat="ing in vm.ingredientList">
+                                    <tr data-ng-repeat="ing in vm.ingredientList">
                                         <td>
                                             <select class="form-control"
                                                     data-ng-model="ing.ingredient"
@@ -81,10 +81,10 @@
                                             <input type="text" data-ng-model="ing.amount" />
                                         </td>
                                         <td>
-                                            <input type="text" data-ng-model="ing.unit" />
+                                            <input type="text" data-ng-model="ing.unitId" />
                                         </td>
                                         <td>
-                                            <button class="btn btn-danger" ng-click="vm.ingredientList.splice($index, 1)">
+                                            <button class="btn btn-danger" data-ng-click="vm.ingredientList.splice($index, 1)">
                                                 <span class="glyphicon glyphicon-remove-sign"></span>
                                             </button>
                                         </td>
@@ -93,7 +93,7 @@
                             </table>
                         </div>
                         <div>
-                            <button id="addIngredient" class="btn btn-success pull-left" ng-click="addIngredient()">
+                            <button id="addIngredient" class="btn btn-success pull-left" data-ng-click="vm.ingredientList.push(vm.createTempRecipeIngredient())">
                                 Add Ingredient
                             </button>
                         </div>
