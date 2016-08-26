@@ -14,7 +14,8 @@
             ingredient: 'Ingredient',
             pantryitem: 'PantryItem',
             recipe: 'Recipe',
-            recipeingredient: 'RecipeIngredient'
+            recipeingredient: 'RecipeIngredient',
+            unit: 'Unit'
         };
 
         var service = {
@@ -35,6 +36,7 @@
             registerIngredient(metadataStore);
             registerRecipe(metadataStore);
             registerRecipeIngredient(metadataStore);
+            registerUnit(metadataStore);
 
             modelValidation.createAndRegister(entityNames);
 
@@ -50,6 +52,7 @@
         }
         
         function createNullos(manager) {
+            /*
             if (nullosExist) return;
             nullosExist = true;
             var unchanged = breeze.EntityState.Unchanged;
@@ -63,6 +66,7 @@
                 var initialValues = values || { name: ' [Select a ' + entityName.toLowerCase() + ']' };
                 return manager.createEntity(entityName, initialValues, unchanged);
             }
+            */
         }
 
         // Wait to call until entityTypes are loaded in metadata
@@ -113,6 +117,13 @@
             metadataStore.registerEntityTypeCtor('RecipeIngredient', RecipeIngredient);
 
             function RecipeIngredient() {
+                this.isPartial = false;
+            }
+        }
+        function registerUnit(metadataStore) {
+            metadataStore.registerEntityTypeCtor('Unit', Unit);
+
+            function Unit() {
                 this.isPartial = false;
             }
         }

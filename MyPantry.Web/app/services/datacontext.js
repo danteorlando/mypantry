@@ -13,7 +13,7 @@
         var logSuccess = getLogFn(serviceId, 'success');
         var manager = emFactory.newManager();
         var primePromise;
-        var repoNames = ['pantryitem', 'ingredient', 'recipe', 'lookup', 'recipeingredient'];
+        var repoNames = ['pantryitem', 'ingredient', 'recipe', 'lookup', 'recipeingredient', 'unit'];
         var $q = common.$q;
 
         var service = {
@@ -120,6 +120,7 @@
                 //var promise = $q.all([service.lookup.getAll(), service.speaker.getPartials(true)]);
                 //var promise = $q.all([service.lookup.getAll()]);
                 var promise = $q.all([service.ingredient.getPartials(true)]);
+                var promist = $q.all([service.unit.getPartials(true)]);
                 if (!model.useManualMetadata) {
                     // got metadata from remote service; now extend it
                     promise = promise.then(function () {

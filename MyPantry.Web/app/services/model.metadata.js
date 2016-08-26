@@ -52,6 +52,7 @@ function metadata() {
         addPantryItem();
         addRecipe();
         addRecipeIngredient();
+        addUnit();
     }
 
     function addIngredient() {
@@ -112,10 +113,22 @@ function metadata() {
             },
             navigationProperties: {
                 recipe: 'Recipe',
-                ingredient: 'Ingredient'
+                ingredient: 'Ingredient',
+                unit: 'Unit'
             }
         });
     }
     
+    function addUnit() {
+        addType({
+            name: 'Unit',
+            dataProperties: {
+                id: { type: ID },
+                name: { max: 50 },
+                isPartial: { type: BOOL, nullOk: false, isUnmapped: true }
+            }
+        });
+    }
+
 }
 })();

@@ -168,6 +168,7 @@
     <Content Include="app\services\repositories\repository.pantryitem.js" />
     <Content Include="app\services\repositories\repository.recipe.js" />
     <Content Include="app\services\repositories\repository.recipeingredient.js" />
+    <Content Include="app\services\repositories\repository.unit.js" />
     <Content Include="app\services\routemediator.js" />
     <Content Include="app\wip\wip.html" />
     <Content Include="app\wip\wip.js" />

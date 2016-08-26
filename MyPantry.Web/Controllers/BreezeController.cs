@@ -50,6 +50,12 @@ namespace MyPantry.Web.Controllers
             return _repository.RecipeIngredients;
         }
 
+        [HttpGet]
+        public IQueryable<Unit> Units()
+        {
+            return _repository.Units;
+        }
+
         /// <summary>
         /// Query returing a 1-element array with a lookups object whose 
         /// properties are all Rooms, Tracks, and TimeSlots.

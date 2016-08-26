@@ -8,7 +8,7 @@ namespace MyPantry.DataAccess
         public RecipeIngredientConfiguration()
         {
 
-            HasKey(ri => new { ri.RecipeId, ri.IngredientId });
+            //HasKey(ri => new { ri.RecipeId, ri.IngredientId });
 
             HasRequired(ri => ri.Recipe)
                 .WithMany(r => r.RecipeIngredientList)

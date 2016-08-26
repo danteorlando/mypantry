@@ -81,7 +81,10 @@
                                             <input type="text" data-ng-model="ing.amount" />
                                         </td>
                                         <td>
-                                            <input type="text" data-ng-model="ing.unitId" />
+                                            <select class="form-control"
+                                                    data-ng-model="ing.unit"
+                                                    data-ng-options="unit.name for unit in vm.units"
+                                                    data-z-validate></select>
                                         </td>
                                         <td>
                                             <button class="btn btn-danger" data-ng-click="vm.ingredientList.splice($index, 1)">

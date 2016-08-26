@@ -29,6 +29,7 @@
         //vm.addIngredient = addIngredient;
         vm.ingredientList = [];
         vm.ingredients = [];
+        vm.units = [];
         //$scope.ingredientList = [];
 
 
@@ -70,8 +71,11 @@
          
         function initLookups() {
             var forceRefresh = false;
-            return datacontext.ingredient.getPartials(forceRefresh).then(function (data) {
+            datacontext.ingredient.getPartials(forceRefresh).then(function (data) {
                 vm.ingredients = data;
+                return datacontext.unit.getPartials(forceRefresh).then(function (data) {
+                    vm.units = data;
+                });
             });
         }
 
@@ -89,7 +93,9 @@
         }
 
         function createTempRecipeIngredient() {
-            return datacontext.recipeingredient.createTempO();
+            var o = datacontext.recipeingredient.createTempO()
+            o.recipe = vm.recipe;
+            return o;
         }
 
         function gotoRecipes() { $location.path('/recipes'); }
