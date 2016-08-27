@@ -27,22 +27,15 @@
         vm.addIngredientToList = addIngredientToList;
         vm.removeIngredientFromList = removeIngredientFromList;
         vm.createTempRecipeIngredient = createTempRecipeIngredient;
-        //vm.addIngredient = addIngredient;
         vm.ingredientList = [];
         vm.ingredients = [];
         vm.units = [];
-        //$scope.ingredientList = [];
 
 
         Object.defineProperty(vm, 'canSave', { get: canSave });
 
         activate();
 
-/*
-        function addIngredient() {
-            vm.ingredientList.push({});
-        }
-*/
         function openImageChooserDialog(inputText) {
             helper.openImageChooserDialog('Recipe Image', inputText)
                 .then(function () {
@@ -93,18 +86,9 @@
 
         function addIngredientToList() {
             vm.ingredientList.push(vm.createTempRecipeIngredient())
-            /*
-            if (angular.isDefined($scope.ingredientName) && $scope.ingredientName != '') {
-
-                vm.ingredientList.push({ name: $scope.ingredientName });
-
-                $scope.ingredientName = '';
-            }
-            */
         }
 
         function removeIngredientFromList(idx) {
-            //var o = datacontext.recipeingredient.createTempO()
             var ri = vm.ingredientList[idx];
             datacontext.recipeingredient.detachRecipeIngredient(ri);
             vm.ingredientList.splice(idx, 1);
