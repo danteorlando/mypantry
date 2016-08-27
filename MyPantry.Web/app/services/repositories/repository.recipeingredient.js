@@ -26,7 +26,8 @@
                 getById: base.getById,
                 getCount: getCount,
                 getEntityByIdOrFromWip: base.getEntityByIdOrFromWip,
-                getPartials: getPartials
+                getPartials: getPartials,
+                detachRecipeIngredient: detachRecipeIngredient
             };
 
             return repo;
@@ -34,6 +35,10 @@
             function create() { return manager.createEntity(entityName); }
 
             function createTempO() { return manager.createEntity(entityName); }
+
+            function detachRecipeIngredient(ri) {
+                manager.detachEntity(ri);
+            }
 
             function getCount() {
                 if (base.zStorage.areItemsLoaded('recipeingredients')) {

@@ -52,6 +52,7 @@
             }
         }
 
+
         // Add ES5 property to datacontext for each named repo
         function defineLazyLoadedRepos() {                     
             repoNames.forEach(function (name) {

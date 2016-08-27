@@ -87,7 +87,7 @@
                                                     data-z-validate></select>
                                         </td>
                                         <td>
-                                            <button class="btn btn-danger" data-ng-click="vm.ingredientList.splice($index, 1)">
+                                            <button class="btn btn-danger" data-ng-click="vm.removeIngredientFromList($index)">
                                                 <span class="glyphicon glyphicon-remove-sign"></span>
                                             </button>
                                         </td>
@@ -96,7 +96,7 @@
                             </table>
                         </div>
                         <div>
-                            <button id="addIngredient" class="btn btn-success pull-left" data-ng-click="vm.ingredientList.push(vm.createTempRecipeIngredient())">
+                            <button id="addIngredient" class="btn btn-success pull-left" data-ng-click="vm.addIngredientToList()">
                                 Add Ingredient
                             </button>
                         </div>
