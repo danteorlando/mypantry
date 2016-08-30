@@ -108,7 +108,7 @@ function metadata() {
                 recipeId: { type: ID },
                 ingredientId: { type: ID },
                 unitId: { type: ID },
-                amount: { type: DECIMAL },
+                amount: {},
                 isPartial: { type: BOOL, nullOk: false, isUnmapped: true }
             },
             navigationProperties: {

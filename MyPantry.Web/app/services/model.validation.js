@@ -20,6 +20,7 @@
 
         function applyValidators(metadataStore) {
             applyRequireReferenceValidators(metadataStore);
+            applyFractionValidator(metadataStore);
             //applyTwitterValidators(metadataStore);
             //applyEmailValidators(metadataStore);
             //applyUrlValidators(metadataStore);
@@ -30,10 +31,14 @@
             entityNames = eNames;
             // Step 1) Create it
             requireReferenceValidator = createRequireReferenceValidator();
+            fractionValidator = createFractionValidator();
+
             //twitterValidator = createTwitterValidator();
             // Step 2) Tell breeze about it
             Validator.register(requireReferenceValidator);
+            Validator.register(fractionValidator);
             //Validator.register(twitterValidator);
+
             // Step 3) Later we will apply them to the properties/entities via applyValidators
             log('Validators created and registered', null, false);
         }
@@ -46,6 +51,11 @@
                 entityType.getProperty(propertyName).validators
                     .push(requireReferenceValidator);
             });
+        }
+
+        function applyFractionValidator(metadataStore) {
+            var entityType = metadataStore.getEntityType(entityNames.recipeingredient);
+            entityType.getProperty('amount').validators.push(fractionValidator);
         }
 
         function createRequireReferenceValidator() {
@@ -61,9 +71,9 @@
             }
         }
 
-        function createFunctionValidator() {
-            var name = 'validateFunction';
-            var ctx = { messageTemplate: 'Amount should be a fraction rather than a decimal' };
+        function createFractionValidator() {
+            var name = 'fraction';
+            var ctx = { messageTemplate: 'Amount should either be a whole number or a whole number and a fraction.' };
             var val = new Validator(name, valFunction, ctx);
             return val;
 
@@ -71,12 +81,12 @@
                 var a = value.split(' ');
                 if (a.length === 1) { //only one part
                     var b = a[0].split('.');
-                    if (b > 0) {
+                    if (b.length > 1) {
                         return false;
                     }
                     else {
                         var c = a[0].split('/');
-                        if (c > 0) {
+                        if (c.length > 1) {
                             //is fraction
                             return true;
                         }
@@ -94,10 +104,11 @@
                     var f = fraction.split('.');
                     var g = fraction.split('/');
 
-                    if (d > 0 || e > 0 || f > 0 || g === 0) {
+                    if (d.length > 1 || e.length > 1 || f.length > 1 || g.length === 1) {
                         return false;
                     }
                     else {
+                        //
                         return true;
                     }
                 }
