@@ -7,8 +7,9 @@
     function modelValidation(common) {
         var entityNames;
         var log = common.logger.getLogFn(serviceId);
-        var Validator = breeze.Validator,
-            requireReferenceValidator;
+        var Validator = breeze.Validator;
+        var requireReferenceValidator;
+        var fractionValidator;
 
         var service = {
             applyValidators: applyValidators,
@@ -60,5 +61,50 @@
             }
         }
 
+        function createFunctionValidator() {
+            var name = 'validateFunction';
+            var ctx = { messageTemplate: 'Amount should be a fraction rather than a decimal' };
+            var val = new Validator(name, valFunction, ctx);
+            return val;
+
+            function valFunction(value) {
+                var a = value.split(' ');
+                if (a.length === 1) { //only one part
+                    var b = a[0].split('.');
+                    if (b > 0) {
+                        return false;
+                    }
+                    else {
+                        var c = a[0].split('/');
+                        if (c > 0) {
+                            //is fraction
+                            return true;
+                        }
+                        else {
+                            //is whole num
+                            return true;
+                        }
+                    }
+                }
+                else if (a.length === 2) {
+                    var whole = a[0];
+                    var fraction = a[1];
+                    var d = whole.split('.');
+                    var e = whole.split('/');
+                    var f = fraction.split('.');
+                    var g = fraction.split('/');
+
+                    if (d > 0 || e > 0 || f > 0 || g === 0) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                }
+                else {
+                    return false;
+                }
+            }
+        }
     }
 })();
