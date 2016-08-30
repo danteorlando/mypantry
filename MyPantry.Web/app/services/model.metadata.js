@@ -61,7 +61,7 @@ function metadata() {
             dataProperties: {
                 id:          { type: ID },
                 name:        { max: 50, nullOk: false },
-                description: { max: 400},
+                description: { max: 400 },
                 imageSource: { max: 400 },
                 isPartial: { type: BOOL, nullOk: false, isUnmapped: true }
             }
