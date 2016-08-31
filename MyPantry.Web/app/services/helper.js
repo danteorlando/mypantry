@@ -8,10 +8,17 @@
     function helper($rootScope, $location, common, bsDialog) {
         var service = {
             replaceLocationUrlGuidWithId: replaceLocationUrlGuidWithId,
-            openImageChooserDialog: openImageChooserDialog
+            openImageChooserDialog: openImageChooserDialog,
+            convertToFraction: convertToFraction
         };
 
         return service;
+
+        function convertToFraction(input) {
+            var x = new Fraction(input);
+            input = x.toFraction(true); // String "1 22/25"
+            return input;
+        }
 
         function replaceLocationUrlGuidWithId(id) {
             // If the current Url is a Guid, then we replace 

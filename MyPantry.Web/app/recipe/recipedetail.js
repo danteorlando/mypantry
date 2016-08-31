@@ -128,6 +128,9 @@
                         wipEntityKey = data.key;
                         vm.recipe = data.entity || data;
                         if (data.recipeIngredientList && data.recipeIngredientList.length > 0) {
+                            for (var i = 0; i < data.recipeIngredientList.length; i++) {
+                                data.recipeIngredientList[i].amount = helper.convertToFraction(data.recipeIngredientList[i].amount);
+                            }
                             vm.ingredientList = data.recipeIngredientList;
                         }
                         //$scope.ingredientList = data.recipeIngredientList;
@@ -168,7 +171,33 @@
 
         function save() {
             if (!canSave()) { return $q.when(null); } // Must return a promise
-
+            /*
+            // need to refactor this section into a different method
+            var len = vm.recipe.recipeIngredientList.length;
+            for (var i = 0; i < len; i++) {
+                var amt = vm.recipe.recipeIngredientList[i].amount;
+                var a = amt.split('/');
+                if (a.length > 1) {
+                    //convert to decimal
+                    var wholeNum = 0;
+                    var b = amt.split(' ');
+                    if (b.length > 1) { //whole num and fraction
+                        wholeNum = parseInt(b[0]);
+                        var frac = b[1];
+                        var c = frac.split('/');
+                        var numerator = parseInt(c[0]);
+                        var denominator = parseInt(c[1]);
+                    }
+                    else { //just a fraction
+                        var frac = b[0];
+                        var c = frac.split('/');
+                        var numerator = parseInt(c[0]);
+                        var denominator = parseInt(c[1]);
+                    }
+                    vm.recipe.recipeIngredientList[i].amount = wholeNum + (numerator / denominator);
+                }
+            }
+            */
             vm.isSaving = true;
             return datacontext.save().then(function (saveResult) {
                 vm.isSaving = false;
