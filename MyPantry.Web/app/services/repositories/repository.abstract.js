@@ -57,7 +57,7 @@
                 if (entity && !entity.isPartial) {
                     self.log('Retrieved [' + entityName + '] id:' + entity.id + ' from cache.', entity, true);
                     if (entity.entityAspect.entityState.isDeleted()) {
-                        entity = null; // hide session marked-for-delete
+                        entity = null;
                     }
                     // Should not need to call $apply because it is synchronous
                     return $q.when(entity);

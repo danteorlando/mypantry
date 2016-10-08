@@ -31,7 +31,6 @@
         //#region internal methods
         function configureMetadataStore(metadataStore) {
             // Pass the Type, Ctor (breeze tracks properties created here), and initializer 
-            // Assume a Session or Person is partial by default
             registerPantryItem(metadataStore);
             registerIngredient(metadataStore);
             registerRecipe(metadataStore);
@@ -52,21 +51,6 @@
         }
         
         function createNullos(manager) {
-            /*
-            if (nullosExist) return;
-            nullosExist = true;
-            var unchanged = breeze.EntityState.Unchanged;
-
-            createNullo(entityNames.timeslot, { start: nulloDate, isSessionSlot: true });
-            createNullo(entityNames.room);
-            createNullo(entityNames.speaker, { firstName: ' [Select a person]' });
-            createNullo(entityNames.track);
-
-            function createNullo(entityName, values) {
-                var initialValues = values || { name: ' [Select a ' + entityName.toLowerCase() + ']' };
-                return manager.createEntity(entityName, initialValues, unchanged);
-            }
-            */
         }
 
         // Wait to call until entityTypes are loaded in metadata
@@ -79,12 +63,6 @@
                 }
             });
 
-            /*
-            var personEntityName = entityNames.person;
-            ['Speakers', 'Speaker', 'Attendees', 'Attendee'].forEach(function (r) {
-                set(r, personEntityName);
-            });
-            */
             function set(resourceName, entityName) {
                 metadataStore.setEntityTypeForResourceName(resourceName, entityName);
             }
@@ -94,7 +72,7 @@
             metadataStore.registerEntityTypeCtor('PantryItem', PantryItem);
 
             function PantryItem() {
-                this.isPartial = false; // presume full session objects until informed otherwise
+                this.isPartial = false;
             }
         }
         

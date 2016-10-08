@@ -10,41 +10,7 @@
     app.config(['$routeProvider', 'routes', routeConfigurator]);
     function routeConfigurator($routeProvider, routes) {
 
-        //#region testing
-        // Learning Point:
-        // If we are testing, we do NOT want to se the routes. 
-        // We did this to prevent the route changes from happening during tests
         if (window.testing) return;
-        // some tests fail if this is EVER executed during ANY test in the run
-        //#endregion
-        
-        //#region Test resolvers
-        //$routeProvider.when('/invalid', {
-        //    templateUrl: 'app/invalid.html',
-        //    resolve: { fake: fakeAllow }
-        //});
-        //$routeProvider.when('/pass', {
-        //    templateUrl: 'app/wip/wip.html',
-        //    resolve: { fake: fakeAllow }
-        //});
-        //$routeProvider.when('/fail', {
-        //    templateUrl: 'app/attendee/attendees.html',
-        //    resolve: { fake: fakeReject }
-        //});
-        //fakeReject.$inject = ['$q'];
-        //function fakeReject($q) {
-        //    var defer = $q.defer();
-        //    defer.reject({ msg: 'You shall not pass!' });
-        //    return defer.promise;
-        //}
-        //fakeAllow.$inject = ['$q'];
-        //function fakeAllow($q) {
-        //    var data = { x: 1 };
-        //    var defer = $q.defer();
-        //    defer.resolve(data);
-        //    return defer.promise;
-        //}
-        //#endregion
 
         routes.forEach(function (r) {
             setRoute(r.url, r.config);
@@ -56,7 +22,7 @@
             // 1. Anything you need to do prior to going to a new route
             // 2. Any logic that might prevent the new route ($q.reject)
             definition.resolve = angular.extend(definition.resolve || {}, {
-                prime: prime //Learning Point: do not prime as a test
+                prime: prime
             });
             $routeProvider.when(url, definition);
 

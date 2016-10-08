@@ -65,17 +65,12 @@
             delay = +delay || 300;
             // if only vm and list parameters were passed, set others by naming convention 
             if (!filteredList) {
-                // assuming list is named sessions, filteredList is filteredSessions
                 filteredList = 'filtered' + list[0].toUpperCase() + list.substr(1).toLowerCase(); // string
-                // filter function is named sessionFilter
                 filter = list + 'Filter'; // function in string form
             }
 
             // create the filtering function we will call from here
             var filterFn = function () {
-                // translates to ...
-                // vm.filteredSessions 
-                //      = vm.sessions.filter(function(item( { returns vm.sessionFilter (item) } );
                 viewmodel[filteredList] = viewmodel[list].filter(function(item) {
                     return viewmodel[filter](item);
                 });

@@ -3,12 +3,12 @@
 
     var app = angular.module('app');
 
-    app.directive('ccSidebar', function () {
+    app.directive('mpSidebar', function () {
         // Opens and clsoes the sidebar menu.
         // Usage:
-        //  <div data-cc-sidebar>
+        //  <div data-mp-sidebar>
         // Creates:
-        //  <div data-cc-sidebar class="sidebar">
+        //  <div data-mp-sidebar class="sidebar">
         var directive = {
             link: link,
             restrict: 'A'
@@ -41,11 +41,11 @@
         }
     });
 
-    app.directive('ccWidgetClose', function () {
+    app.directive('mpWidgetClose', function () {
         // Usage:
-        // <a data-cc-widget-close></a>
+        // <a data-mp-widget-close></a>
         // Creates:
-        // <a data-cc-widget-close="" href="#" class="wclose">
+        // <a data-mp-widget-close="" href="#" class="wclose">
         //     <i class="fa fa-remove"></i>
         // </a>
         var directive = {
@@ -67,11 +67,11 @@
         }
     });
 
-    app.directive('ccWidgetMinimize', function () {
+    app.directive('mpWidgetMinimize', function () {
         // Usage:
-        // <a data-cc-widget-minimize></a>
+        // <a data-mp-widget-minimize></a>
         // Creates:
-        // <a data-cc-widget-minimize="" href="#"><i class="fa fa-chevron-up"></i></a>
+        // <a data-mp-widget-minimize="" href="#"><i class="fa fa-chevron-up"></i></a>
         var directive = {
             link: link,
             template: '<i class="fa fa-chevron-up"></i>',
@@ -101,11 +101,11 @@
         }
     });
 
-    app.directive('ccScrollToTop', ['$window',
+    app.directive('mpScrollToTop', ['$window',
         // Usage:
-        // <span data-cc-scroll-to-top></span>
+        // <span data-mp-scroll-to-top></span>
         // Creates:
-        // <span data-cc-scroll-to-top="" class="totop">
+        // <span data-mp-scroll-to-top="" class="totop">
         //      <a href="#"><i class="fa fa-chevron-up"></i></a>
         // </span>
         function ($window) {
@@ -135,11 +135,11 @@
         }
     ]);
 
-    app.directive('ccSpinner', ['$window', function ($window) {
+    app.directive('mpSpinner', ['$window', function ($window) {
         // Description:
         //  Creates a new Spinner and sets its options
         // Usage:
-        //  <div data-cc-spinner="vm.spinnerOptions"></div>
+        //  <div data-mp-spinner="vm.spinnerOptions"></div>
         var directive = {
             link: link,
             restrict: 'A'
@@ -148,7 +148,7 @@
 
         function link(scope, element, attrs) {
             scope.spinner = null;
-            scope.$watch(attrs.ccSpinner, function (options) {
+            scope.$watch(attrs.mpSpinner, function (options) {
                 if (scope.spinner) {
                     scope.spinner.stop();
                 }
@@ -158,11 +158,11 @@
         }
     }]);
 
-    app.directive('ccImgPerson', ['config', function (config) {
+    app.directive('mpImgPerson', ['config', function (config) {
         // Descripton: 
         //  Creates an image element and concatenates the image path and file name
         // Usage:
-        //  <img data-cc-img-person="{{s.imageSource}}" class="img-thumbnail"></div>
+        //  <img data-mp-img-person="{{s.imageSource}}" class="img-thumbnail"></div>
         var basePath = config.imageSettings.imageBasePath;
         var unknownImage = config.imageSettings.unknownPersonImageSource;
         var directive = {
@@ -173,7 +173,7 @@
         return directive;
 
         function link(scope, element, attrs) {
-            attrs.$observe('ccImgPerson', function (value) {
+            attrs.$observe('mpImgPerson', function (value) {
                 value = basePath + (value || unknownImage);
                 attrs.$set('src', value);
             });
@@ -201,9 +201,8 @@
         }
     }]);
 
-    app.directive('ccWidgetHeader', function () {
+    app.directive('mpWidgetHeader', function () {
         //Usage:
-        //<div data-cc-widget-header title="vm.map.title"></div>
         var directive = {
             link: link,
             scope: {
@@ -222,9 +221,9 @@
         }
     });
 
-    app.directive('ccWip', ['$route', function ($route) {
+    app.directive('mpWip', ['$route', function ($route) {
         //Usage:
-        //<li data-cc-wip
+        //<li data-mp-wip
         //  wip="vm.wip"
         //  routes="vm.routes"
         //  changed-event="{{vm.wipChangedEvent}}"

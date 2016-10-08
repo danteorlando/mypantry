@@ -134,7 +134,6 @@
                 vm.isSaving = false;
                 removeWipEntity();
                 helper.replaceLocationUrlGuidWithId(vm.pantryitem.id);
-                //datacontext.speaker.calcIsSpeaker();
             }).catch(function (error) {
                 vm.isSaving = false;
             });

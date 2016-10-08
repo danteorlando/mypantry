@@ -5,18 +5,6 @@
 
     function dashboard(common, datacontext) {
         var vm = this;
-        vm.map = {
-            title: 'Location'
-        };
-        vm.news = {
-            title: 'Code Camp',
-            description: 'Code Camp is a community event where developers learn from fellow developers. All are welcome to attend and speak. Code Camp is free, by and for the deveoper community, and occurs on the weekends.'
-        };
-        vm.speakers = {
-            interval: 5000,
-            list: [],
-            title: 'Top Speakers'
-        };
         vm.content = {
             predicate: '',
             reverse: false,
@@ -32,10 +20,6 @@
         function activate() {
             var promises = [getPantryItemCount(), getIngredientCount(), getRecipeCount()];
             common.activateController(promises, controllerId);
-            
-            // Learning Point
-            //$q.all([getAttendeeCount(), getSessionCount(), getTrackCounts()])
-            //    .then(function (data) { common.activateSuccess(controllerId); });
         }
         
         function getPantryItemCount() {

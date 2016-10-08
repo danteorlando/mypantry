@@ -25,11 +25,6 @@
             // sub-services
             zStorage: zStorage,
             zStorageWip: zStorageWip
-            // Repositories to be added by defineLazyLoadedRepos
-            //      attendees
-            //      lookups
-            //      sessions
-            //      speakers
         };
        
         init();
@@ -117,9 +112,6 @@
             return primePromise;
 
             function loadLookupsFromRemote() {
-                // get lookups and speakers from remote data source, in parallel
-                //var promise = $q.all([service.lookup.getAll(), service.speaker.getPartials(true)]);
-                //var promise = $q.all([service.lookup.getAll()]);
                 var promise = $q.all([service.ingredient.getPartials(true)]);
                 var promist = $q.all([service.unit.getPartials(true)]);
                 if (!model.useManualMetadata) {
@@ -181,7 +173,7 @@
         // This function becomes unnecessary if Breeze decides that
         // unmapped properties are not recorded in originalValues
         //
-        // We do this so we can remove the isSpeaker and isPartial properties from
+        // We do this so we can remove the isPartial property from
         // the originalValues of an entity. Otherwise, when the object's changes
         // are canceled these values will also reset: isPartial will go
         // from false to true, and force the controller to refetch the
@@ -190,7 +182,7 @@
         // so we remove them.        
         function interceptPropertyChange(changeArgs) {
             var changedProp = changeArgs.args.propertyName;
-            if (changedProp === 'isPartial' || changedProp === 'isSpeaker') {
+            if (changedProp === 'isPartial') {
                delete changeArgs.entity.entityAspect.originalValues[changedProp];
             }
         }

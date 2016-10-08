@@ -18,7 +18,6 @@
         /* Implementation */
         function createRepo(manager) {
             var base = new AbstractRepository(manager, entityName, serviceId);
-            //var count = undefined, sessionsPerTrack = undefined;
             var count = undefined;
             var repo = {
                 create: create,
